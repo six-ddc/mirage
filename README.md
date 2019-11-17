@@ -16,11 +16,18 @@ A web DSL to easily create a simple HTTP server
 
 - **High performance:** The Web framework implementation is based on [Spring Boot](https://spring.io/projects/spring-boot), and DSL syntax is based on [Groovy](http://groovy-lang.org/).
 
-## Installation
+## Requirements
+
+- Java (1.7 or newer)
+- Maven (if build)
+
+## Download / Installation
 
 ```shell
 make && make install
 ```
+
+Release binaries are available from [GitHub releases](https://github.com/six-ddc/mirage/releases).
 
 ## Usage
 
@@ -118,6 +125,31 @@ $ curl -s http://127.0.0.1:8080/user/1234/get | jq .
     ]
   }
 }
+```
+
+## Performance
+
+My test machine is an Intel Core i5 2.7 GHz, 2 CPUs, 8 GB Memory
+
+```shell
+$ mirage -c 'get("/hello") { resp.println "world!"}'
+```
+
+```shell
+$ wrk -c 10 -t 10 -d 1s --latency http://127.0.0.1:8080/hello
+Running 1s test @ http://127.0.0.1:8080/hello
+  10 threads and 10 connections
+  Thread Stats   Avg      Stdev     Max   +/- Stdev
+    Latency   847.57us    1.45ms  27.75ms   93.86%
+    Req/Sec     1.74k   528.60     3.22k    77.27%
+  Latency Distribution
+     50%  457.00us
+     75%  815.00us
+     90%    1.63ms
+     99%    7.03ms
+  19082 requests in 1.10s, 2.31MB read
+Requests/sec:  17335.71
+Transfer/sec:      2.10MB
 ```
 
 ## License
