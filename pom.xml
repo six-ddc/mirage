@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.github.six-ddc</groupId>
+    <artifactId>mirage</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>mirage-core</module>
+        <module>mirage-cli</module>
+    </modules>
+
+    <name>mirage</name>
+    <description>A web DSL to easily create a simple HTTP server</description>
+    <url>https://github.com/six-ddc/mirage</url>
+
+    <issueManagement>
+        <url>https://github.com/six-ddc/mirage/issues</url>
+        <system>GitHub Issues</system>
+    </issueManagement>
+
+    <licenses>
+        <license>
+            <name>GNU General Public License v3.0</name>
+            <url>https://www.gnu.org/licenses/</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <scm>
+        <url>https://github.com/six-ddc/mirage</url>
+        <connection>scm:git:git://github.com/six-ddc/mirage.git</connection>
+        <developerConnection>scm:git:git@github.com:six-ddc/mirage.git</developerConnection>
+    </scm>
+
+    <developers>
+        <developer>
+            <id>six-ddc</id>
+            <name>Dongcheng Du</name>
+            <email>dongcheng.du@gmail.com</email>
+            <url>https://github.com/six-ddc</url>
+        </developer>
+    </developers>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>1.5.10.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.7</java.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.github.six-ddc</groupId>
+                <artifactId>mirage-core</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+</project>

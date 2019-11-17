@@ -1,0 +1,9 @@
+def ctx = context(filetypes: ["mir"], scope: scriptScope())
+contributor(ctx, {
+    delegatesTo(findClass("com.github.sixddc.mirage.delegate.ControllerDelegate"))
+})
+
+contributor(context(), {
+    category("com.github.sixddc.mirage.delegate.HttpServletRequestCategory")
+    category("groovy.time.TimeCategory")
+})
