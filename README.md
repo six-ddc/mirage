@@ -55,14 +55,7 @@ mirage -c 'get("/hello") { resp.println "world!"}'
 # world!
 ```
 
-#### file server
-
-```shell
-mirage -c 'get("/a.mp4") { resp.file "a.mp4" }'
-# open http://127.0.0.1:8080/a.mp4
-```
-
-#### file browser
+#### static file server
 
 ```shell
 mirage -c 'get("/files/**") { resp.index "." }'
@@ -91,6 +84,37 @@ handle path: '/user/{uid}/get', method: "GET", {
             }
         }
     }
+}
+```
+
+And also you can write json response directly
+
+```groovy
+handle path: '/user/{uid}/get', method: "GET", {
+
+    sleep 100.millisecond
+
+    resp.eval """{
+        "id": "${req.pathVariables.uid}",
+        "name": "${random.forRegex(/[A-Z][a-z]{3,10}/)}",
+        "t": "${new Date()}",
+        "data": {
+            "contact": [
+                {
+                    "id": 1,
+                    "name": "${faker.name().name()}",
+                    "address": "${faker.address().fullAddress()}",
+                    "phone": "${faker.phoneNumber().cellPhone()}"
+                },
+                {
+                    "id": 2,
+                    "name": "${faker.name().name()}",
+                    "address": "${faker.address().fullAddress()}",
+                    "phone": "${faker.phoneNumber().cellPhone()}"
+                }
+            ]
+        }
+    }"""
 }
 ```
 
