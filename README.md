@@ -85,15 +85,10 @@ handle path: '/user/{uid}/get', method: "GET", {
         }
     }
 }
-```
 
-And also you can write json response directly
+get('/user/{uid}/get2') {
 
-```groovy
-handle path: '/user/{uid}/get', method: "GET", {
-
-    sleep 100.millisecond
-
+    // and also you can write json response directly
     resp.eval """{
         "id": "${req.pathVariables.uid}",
         "name": "${random.forRegex(/[A-Z][a-z]{3,10}/)}",
@@ -128,6 +123,7 @@ mirage user.mir
 
 ```json
 $ curl -s http://127.0.0.1:8080/user/1234/get | jq .
+$ curl -s http://127.0.0.1:8080/user/1234/get2 | jq .
 {
   "id": "1234",
   "name": "Astn",
